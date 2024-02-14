@@ -1,0 +1,618 @@
+------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\RENET\Downloads\data and data\Ebube.log
+  log type:  text
+ opened on:   8 Aug 2022, 15:26:13
+
+. import excel using "C:\Users\RENET\Downloads\data and data\ebube data.xlsx", sheet("Sheet1") firstrow case(prese
+> rve) clear
+(5 vars, 30 obs)
+
+. tsset Category
+
+Time variable: Category, 1992 to 2021
+        Delta: 1 unit
+
+. dfuller food, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: food                             Number of obs  = 28
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -0.769       -3.730       -2.992       -2.626
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.8280.
+
+Regression table
+------------------------------------------------------------------------------
+      D.food | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        food |
+         L1. |  -.0330641   .0429885    -0.77   0.449    -.1216006    .0554724
+         LD. |  -.5468761   .1645422    -3.32   0.003    -.8857571   -.2079951
+             |
+       _cons |   5.823285   3.518466     1.66   0.110    -1.423131     13.0697
+------------------------------------------------------------------------------
+
+. dfuller CO2emissionskt, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: CO2emissionskt                   Number of obs  = 27
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.624       -3.736       -2.994       -2.628
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.4708.
+
+Regression table
+--------------------------------------------------------------------------------
+D.             |
+CO2emissionskt | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+---------------+----------------------------------------------------------------
+CO2emissionskt |
+           L1. |  -.2407319   .1482711    -1.62   0.118    -.5467485    .0652847
+           LD. |   .0662818   .2185403     0.30   0.764    -.3847633    .5173269
+               |
+         _cons |   24178.01   14322.38     1.69   0.104    -5381.928    53737.95
+--------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller Averageprecipitationindepth, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: Averageprecipi~h                 Number of obs  = 27
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.678       -3.736       -2.994       -2.628
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.4427.
+
+Regression table
+---------------------------------------------------------------------------------------------
+D.                          |
+Averageprecipitationindepth | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+Averageprecipitationindepth |
+                        L1. |  -.1844488   .1099509    -1.68   0.106    -.4113764    .0424787
+                        LD. |   .0772191   .1988825     0.39   0.701    -.3332542    .4876924
+                            |
+                      _cons |   16.58656   9.952142     1.67   0.109    -3.953654    37.12677
+---------------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller MeanTemperature, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: MeanTemperature                  Number of obs  = 28
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.492       -3.730       -2.992       -2.626
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5376.
+
+Regression table
+---------------------------------------------------------------------------------
+D.              |
+MeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------+----------------------------------------------------------------
+MeanTemperature |
+            L1. |  -.1106297   .0741578    -1.49   0.148    -.2633605    .0421011
+            LD. |  -.0141408   .1926929    -0.07   0.942    -.4109993    .3827177
+                |
+          _cons |   3.015375   2.009036     1.50   0.146    -1.122311    7.153062
+---------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. gen logAverageprecipitationindepth = log(Averageprecipitationindepth)
+(1 missing value generated)
+
+. dfuller logAverageprecipitationindepth, regress lags(0)
+
+Dickey–Fuller test for unit root           Number of obs  = 28
+Variable: logAverageprec~h                 Number of lags =  0
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.637       -3.730       -2.992       -2.626
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.4641.
+
+Regression table
+------------------------------------------------------------------------------------------------
+D.                             |
+logAverageprecipitationindepth | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------------------+----------------------------------------------------------------
+logAverageprecipitationindepth |
+                           L1. |  -.1655743   .1011727    -1.64   0.114    -.3735377    .0423892
+                               |
+                         _cons |   .7449331   .4558151     1.63   0.114    -.1920082    1.681874
+------------------------------------------------------------------------------------------------
+
+. dfuller logAverageprecipitationindepth, regress lags(2)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: logAverageprec~h                 Number of obs  = 26
+                                           Number of lags =  2
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.721       -3.743       -2.997       -2.629
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.4203.
+
+Regression table
+------------------------------------------------------------------------------------------------
+D.                             |
+logAverageprecipitationindepth | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------------------+----------------------------------------------------------------
+logAverageprecipitationindepth |
+                           L1. |  -.2084284    .121104    -1.72   0.099    -.4595827    .0427259
+                           LD. |   .0875921   .2068782     0.42   0.676    -.3414471    .5166313
+                          L2D. |   .0875921   .2068782     0.42   0.676    -.3414471    .5166313
+                               |
+                         _cons |   .9374408   .5453339     1.72   0.100    -.1935126    2.068394
+------------------------------------------------------------------------------------------------
+
+.  gen logMeanTemperature = log(MeanTemperature)
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller logMeanTemperature, regress lags(2)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: logMeanTempera~e                 Number of obs  = 27
+                                           Number of lags =  2
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.567       -3.736       -2.994       -2.628
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5003.
+
+Regression table
+------------------------------------------------------------------------------------
+D.                 |
+logMeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+logMeanTemperature |
+               L1. |   -.126531   .0807677    -1.57   0.131    -.2936117    .0405497
+               LD. |  -.0160318   .1992082    -0.08   0.937    -.4281254    .3960617
+              L2D. |  -.0160318   .1992082    -0.08   0.937    -.4281254    .3960617
+                   |
+             _cons |   .4182217   .2664878     1.57   0.130    -.1330503    .9694937
+------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller logMeanTemperature, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: logMeanTempera~e                 Number of obs  = 28
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.493       -3.730       -2.992       -2.626
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5371.
+
+Regression table
+------------------------------------------------------------------------------------
+D.                 |
+logMeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+logMeanTemperature |
+               L1. |    -.11075   .0741953    -1.49   0.148     -.263558    .0420581
+               LD. |  -.0140246   .1926855    -0.07   0.943    -.4108678    .3828186
+                   |
+             _cons |   .3660608   .2447824     1.50   0.147    -.1380779    .8701994
+------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller logMeanTemperature, regress lags(0)
+
+Dickey–Fuller test for unit root           Number of obs  = 29
+Variable: logMeanTempera~e                 Number of lags =  0
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.435       -3.723       -2.989       -2.625
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5655.
+
+Regression table
+------------------------------------------------------------------------------------
+D.                 |
+logMeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+logMeanTemperature |
+               L1. |  -.0984695   .0686272    -1.43   0.163     -.239281    .0423419
+                   |
+             _cons |   .3254703   .2263967     1.44   0.162    -.1390573    .7899979
+------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller logMeanTemperature, regress lags(3)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: logMeanTempera~e                 Number of obs  = 26
+                                           Number of lags =  3
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.665       -3.743       -2.997       -2.629
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.4494.
+
+Regression table
+------------------------------------------------------------------------------------
+D.                 |
+logMeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+logMeanTemperature |
+               L1. |  -.1475585   .0886365    -1.66   0.111    -.3318882    .0367712
+               LD. |  -.0187077   .2060157    -0.09   0.929    -.4471408    .4097253
+              L2D. |  -.0187077   .2060157    -0.09   0.929    -.4471408    .4097253
+              L3D. |  -.0187077   .2060157    -0.09   0.929    -.4471408    .4097253
+                   |
+             _cons |   .4877239   .2924795     1.67   0.110    -.1205206    1.095968
+------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. dfuller MeanTemperature, regress lags(0)
+
+Dickey–Fuller test for unit root           Number of obs  = 29
+Variable: MeanTemperature                  Number of lags =  0
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.434       -3.723       -2.989       -2.625
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5659.
+
+Regression table
+---------------------------------------------------------------------------------
+D.              |
+MeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------+----------------------------------------------------------------
+MeanTemperature |
+            L1. |  -.0983634   .0685934    -1.43   0.163    -.2391055    .0423786
+                |
+          _cons |   2.681036   1.857864     1.44   0.161    -1.130986    6.493059
+---------------------------------------------------------------------------------
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller MeanTemperature, regress lags(1)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: MeanTemperature                  Number of obs  = 28
+                                           Number of lags =  1
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.492       -3.730       -2.992       -2.626
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5376.
+
+Regression table
+---------------------------------------------------------------------------------
+D.              |
+MeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------+----------------------------------------------------------------
+MeanTemperature |
+            L1. |  -.1106297   .0741578    -1.49   0.148    -.2633605    .0421011
+            LD. |  -.0141408   .1926929    -0.07   0.942    -.4109993    .3827177
+                |
+          _cons |   3.015375   2.009036     1.50   0.146    -1.122311    7.153062
+---------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. dfuller MeanTemperature, regress lags(2)
+
+Augmented Dickey–Fuller test for unit root
+
+Variable: MeanTemperature                  Number of obs  = 27
+                                           Number of lags =  2
+
+H0: Random walk without drift, d = 0
+
+                                       Dickey–Fuller
+                   Test      -------- critical value ---------
+              statistic           1%           5%          10%
+--------------------------------------------------------------
+ Z(t)            -1.566       -3.736       -2.994       -2.628
+--------------------------------------------------------------
+MacKinnon approximate p-value for Z(t) = 0.5008.
+
+Regression table
+---------------------------------------------------------------------------------
+D.              |
+MeanTemperature | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------+----------------------------------------------------------------
+MeanTemperature |
+            L1. |  -.1263924   .0807255    -1.57   0.131    -.2933858     .040601
+            LD. |  -.0161651    .199217    -0.08   0.936    -.4282769    .3959467
+           L2D. |  -.0161651    .199217    -0.08   0.936    -.4282769    .3959467
+                |
+          _cons |   3.445014   2.187557     1.57   0.129    -1.080293    7.970321
+---------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. regress food CO2emissionskt Averageprecipitationindepth MeanTemperature, vce(robust)
+
+Linear regression                               Number of obs     =         29
+                                                F(3, 25)          =      46.20
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.8199
+                                                Root MSE          =     8.4015
+
+---------------------------------------------------------------------------------------------
+                            |               Robust
+                       food | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+             CO2emissionskt |   .0002914     .00021     1.39   0.177     -.000141    .0007239
+Averageprecipitationindepth |   1.846874   .9687616     1.91   0.068    -.1483281    3.842076
+            MeanTemperature |   82.26286   16.24454     5.06   0.000      48.8066    115.7191
+                      _cons |  -2344.583   503.5779    -4.66   0.000    -3381.722   -1307.445
+---------------------------------------------------------------------------------------------
+
+. xcointreg
+command xcointreg is unrecognized
+r(199);
+
+. ssc install xcointreg
+host not found
+http://fmwww.bc.edu/repec/bocode/x/ either
+  1)  is not a valid URL, or
+  2)  could not be contacted, or
+  3)  is not a Stata download site (has no stata.toc file).
+r(631);
+
+. ssc install xtcointreg
+host not found
+http://fmwww.bc.edu/repec/bocode/x/ either
+  1)  is not a valid URL, or
+  2)  could not be contacted, or
+  3)  is not a Stata download site (has no stata.toc file).
+r(631);
+
+. estat dwatson
+
+Durbin–Watson d-statistic(  4,    29) =  .9390746
+
+. twoway (tsline food)
+
+. graph save "Graph" "C:\Users\RENET\Downloads\data and data\Graph.gph"
+file C:\Users\RENET\Downloads\data and data\Graph.gph saved
+regress food CO2emissionskt Averageprecipitationindepth MeanTemperature, vce(robust)
+
+Linear regression                               Number of obs     =         29
+                                                F(3, 25)          =      46.20
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.8199
+                                                Root MSE          =     8.4015
+
+---------------------------------------------------------------------------------------------
+                            |               Robust
+                       food | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+             CO2emissionskt |   .0002914     .00021     1.39   0.177     -.000141    .0007239
+Averageprecipitationindepth |   1.846874   .9687616     1.91   0.068    -.1483281    3.842076
+            MeanTemperature |   82.26286   16.24454     5.06   0.000      48.8066    115.7191
+                      _cons |  -2344.583   503.5779    -4.66   0.000    -3381.722   -1307.445
+---------------------------------------------------------------------------------------------
+
+. help FMOLS
+
+. ssc install xcointreg
+ssc install: "xcointreg" not found at SSC, type search xcointreg
+(To find all packages at SSC that start with x, type ssc describe x)
+r(601);
+
+. ssc install xtcointreg
+checking xtcointreg consistency and verifying not already installed...
+installing into C:\Users\RENET\ado\plus\...
+installation complete.
+
+. xtcointreg food CO2emissionskt Averageprecipitationindepth MeanTemperature
+varlist required
+r(100);
+
+. xtcointreg food CO2emissionskt Averageprecipitationindepth MeanTemperature, est(fmols)
+varlist required
+r(100);
+
+. xtcointreg varlist food CO2emissionskt Averageprecipitationindepth MeanTemperature, est(fmols)
+variable varlist not found
+r(111);
+
+. xtcointreg food CO2emissionskt, est(fmols)
+varlist required
+r(100);
+
+. global list food CO2emissionskt Averageprecipitationindepth MeanTemperature
+
+. xtcointreg list, est(fmols)
+variable list not found
+r(111);
+
+. summarize $list
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        food |         30    80.02667    19.12979      48.07     111.74
+CO2emissio~t |         29    97112.11       11380    76947.4   119544.1
+Averagepre~h |         29    90.59014     3.49369     86.088     94.336
+MeanTemper~e |         30    27.09003    .2177266     26.765     27.256
+
+. xtcointreg $list, est(fmols)
+varlist required
+r(100);
+
+.  xtcointreg $list food CO2emissionskt Averageprecipitationindepth MeanTemperature, est(fmols)
+varlist required
+r(100);
+
+. . regress food CO2emissionskt Averageprecipitationindepth MeanTemperature, vce(fmols)
+vcetype fmols not allowed
+r(198);
+
+. . regress food CO2emissionskt Averageprecipitationindepth MeanTemperature, est(fmols)
+option est() not allowed
+r(198);
+
+. reg $list
+
+      Source |       SS           df       MS      Number of obs   =        29
+-------------+----------------------------------   F(3, 25)        =     37.95
+       Model |  8035.52035         3  2678.50678   Prob > F        =    0.0000
+    Residual |  1764.61155        25   70.584462   R-squared       =    0.8199
+-------------+----------------------------------   Adj R-squared   =    0.7983
+       Total |   9800.1319        28  350.004711   Root MSE        =    8.4015
+
+---------------------------------------------------------------------------------------------
+                       food | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+             CO2emissionskt |   .0002914   .0002085     1.40   0.174    -.0001379    .0007208
+Averageprecipitationindepth |   1.846874   .7956968     2.32   0.029     .2081056    3.485642
+            MeanTemperature |   82.26286   14.17073     5.81   0.000      53.0777     111.448
+                      _cons |  -2344.583   429.8284    -5.45   0.000    -3229.832   -1459.335
+---------------------------------------------------------------------------------------------
+
+.  xtcointreg $list
+varlist required
+r(100);
+
+.  xtcointreg
+varlist required
+r(100);
+
+.  xtcointreg ($list)
+varlist required
+r(100);
+
+. twoway (tsline food)
+
+. do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. twoway (tsline CO2emissionskt)
+
+. 
+end of do-file
+
+. graph save "Graph" "C:\Users\RENET\Downloads\data and data\Graph2.gph"
+file C:\Users\RENET\Downloads\data and data\Graph2.gph saved
+do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. twoway (tsline Averageprecipitationindepth)
+
+. 
+end of do-file
+
+. graph save "Graph" "C:\Users\RENET\Downloads\data and data\Graph3.gph"
+file C:\Users\RENET\Downloads\data and data\Graph3.gph saved
+do "C:\Users\RENET\AppData\Local\Temp\STD26cc_000000.tmp"
+
+. twoway (tsline MeanTemperature)
+
+. 
+end of do-file
+
+. graph save "Graph" "C:\Users\RENET\Downloads\data and data\Graph4.gph"
+file C:\Users\RENET\Downloads\data and data\Graph4.gph saved
+exit, clear
